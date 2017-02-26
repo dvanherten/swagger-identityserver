@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>QuickstartIdentityServer</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>QuickstartIdentityServer</PackageId>
+    <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\**\*;**\*.cshtml;appsettings.json;web.config">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.*" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.*" />
+    <PackageReference Include="IdentityServer4" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>
