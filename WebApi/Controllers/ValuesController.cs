@@ -9,8 +9,20 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET api/values
+        /// <summary>
+        /// SUMMARY INFORMATION!
+        /// </summary>
+        /// <remarks>
+        /// REMARKS are awesome because the become implementation notes!
+        ///     
+        ///     {
+        ///         "WithSome": "Tab support for code blocks!"
+        ///     }
+        /// 
+        /// Documentation power at your fingertips!
+        /// </remarks>
         [HttpGet]
+        [Produces("application/json")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
