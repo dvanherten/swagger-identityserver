@@ -40,6 +40,21 @@ namespace WebApi
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "WebApi.xml");
                 options.IncludeXmlComments(xmlPath);
+
+                // Handle OAuth
+                options.AddSecurityDefinition("oauth2", new OAuth2Scheme
+                {
+                    Type = "oauth2",
+                    Flow = "implicit",
+                    AuthorizationUrl = "http://localhost:5000/connect/authorize",
+                    TokenUrl = "http://localhost:5000/connect/token",
+                    Scopes = new Dictionary<string, string>()
+                    {
+                        { "api1", "My API" }
+                    }
+                });
+
+                options.OperationFilter<AuthorizeCheckOperationFilter>();
             });
         }
 
@@ -50,9 +65,18 @@ namespace WebApi
             loggerFactory.AddDebug();
 
             app.UseSwagger();
-            app.UseSwaggerUi(c =>
+            app.UseSwaggerUi(options =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Our Awesome API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Our Awesome API V1");
+                options.ConfigureOAuth2("swaggerui", "", "", "Swagger UI");
+            });
+
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5000",
+                RequireHttpsMetadata = false,
+
+                ApiName = "api1",
             });
 
             app.UseMvc();

@@ -37,43 +37,17 @@ namespace QuickstartIdentityServer
             {
                 new Client
                 {
-                    ClientId = "client",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-                    ClientSecrets = 
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    AllowedScopes = { "api1" }
-                },
-
-                // resource owner password grant client
-                new Client
-                {
-                    ClientId = "ro.client",
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    AllowedScopes = { "api1" }
-                },
-
-                // OpenID Connect implicit flow client (MVC)
-                new Client
-                {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
+                    ClientId = "swaggerui",
+                    ClientName = "Swagger UI",
                     AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { "http://localhost:5002/signin-oidc" },
-                    PostLogoutRedirectUris = { "http://localhost:5002" },
+                    RedirectUris = { "http://localhost:5001/swagger/o2c.html" },
+                    PostLogoutRedirectUris = { "http://localhost:5001/swagger/" },
 
                     AllowedScopes =
                     {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        "api1"
                     }
                 }
             };
