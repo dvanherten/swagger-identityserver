@@ -65,7 +65,7 @@ namespace WebApi
             loggerFactory.AddDebug();
 
             app.UseSwagger();
-            app.UseSwaggerUi(options =>
+            app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Our Awesome API V1");
                 options.ConfigureOAuth2("swaggerui", "", "", "Swagger UI");
